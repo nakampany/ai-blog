@@ -92,6 +92,7 @@ async function review(
   body: string,
 ): Promise<string> {
   const prompt = `Please review the following blog post and use Japanese and Markdown for review results.
+Please take special care to ensure that there are no inappropriate contents or expressions to be published as a corporate blog post.
 
 Title: ${title}
 Tags(comma separated): ${tags}
@@ -107,7 +108,7 @@ ${body}`;
         content: prompt,
       },
     ],
-    model: "gpt-4o",
+    model: "gpt-4o-mini",
   });
   if (
     completion.choices.length === 0 ||

@@ -1,5 +1,7 @@
 # AI Blog Reviewer
 
+This has ChatGPT review a corporate blog post.
+
 ![index](./docs/images/index.png)
 
 ## Run Development Server
