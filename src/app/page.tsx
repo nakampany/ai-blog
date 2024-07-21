@@ -22,6 +22,7 @@ function Reviewer() {
 
   async function onReview() {
     setIsReviewing(true);
+    setReviewComment("");
     let comment = "";
     try {
       comment = await review(title, tags, body);
@@ -63,7 +64,7 @@ function Reviewer() {
         className="block w-full border-0 p-2 mb-4"
       ></textarea>
       {isReviewing ? (
-        <p className="float-right">Reviewing...</p>
+        <p className="float-right">Reviewing... It takes a minute at most.</p>
       ) : (
         <button
           type="button"
@@ -106,7 +107,7 @@ ${body}`;
         content: prompt,
       },
     ],
-    model: "gpt-4o-mini",
+    model: "gpt-4o",
   });
   if (
     completion.choices.length === 0 ||
