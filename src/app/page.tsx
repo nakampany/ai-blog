@@ -1,6 +1,8 @@
 "use client";
 
+import OpenAI from "openai";
 import { useState } from "react";
+import ReactMarkdown from "react-markdown";
 
 export default function Home() {
   return (
@@ -15,13 +17,27 @@ function Reviewer() {
   const [title, setTitle] = useState("");
   const [tags, setTags] = useState("");
   const [body, setBody] = useState("");
+  const [reviewComment, setReviewComment] = useState("");
+  const [isReviewing, setIsReviewing] = useState(false);
 
-  function onReview() {
-    console.log("onReview", title, tags, body);
+  async function onReview() {
+    setIsReviewing(true);
+    let comment = "";
+    try {
+      comment = await review(title, tags, body);
+    } catch (e) {
+      setReviewComment("");
+      window.alert("error");
+      console.error("error", e);
+      setIsReviewing(false);
+      return;
+    }
+    setReviewComment(comment);
+    setIsReviewing(false);
   }
 
   return (
-    <div>
+    <>
       <input
         type="text"
         name="title"
@@ -46,13 +62,58 @@ function Reviewer() {
         onChange={(event) => setBody(event.target.value)}
         className="block w-full border-0 p-2 mb-4"
       ></textarea>
-      <button
-        type="button"
-        className="float-right rounded-md bg-indigo-600 px-3 py-2 font-semibold text-white hover:bg-indigo-500 focus:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        onClick={onReview}
-      >
-        Review By ChatGPT
-      </button>
-    </div>
+      {isReviewing ? (
+        <p className="float-right">Reviewing...</p>
+      ) : (
+        <button
+          type="button"
+          className="float-right rounded-md bg-indigo-600 mb-4 px-3 py-2 font-semibold text-white hover:bg-indigo-500 focus:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          onClick={onReview}
+        >
+          Review By ChatGPT
+        </button>
+      )}
+      <ReactMarkdown className="markdown clear-right">
+        {reviewComment}
+      </ReactMarkdown>
+    </>
   );
+}
+
+const openai = new OpenAI({
+  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+  dangerouslyAllowBrowser: true,
+});
+
+async function review(
+  title: string,
+  tags: string,
+  body: string,
+): Promise<string> {
+  const prompt = `Please review the following blog post and use Japanese and Markdown for review results.
+
+Title: ${title}
+Tags(comma separated): ${tags}
+${body}`;
+  const completion = await openai.chat.completions.create({
+    messages: [
+      {
+        role: "system",
+        content: "You are a great IT blog writer.",
+      },
+      {
+        role: "user",
+        content: prompt,
+      },
+    ],
+    model: "gpt-4o-mini",
+  });
+  if (
+    completion.choices.length === 0 ||
+    !completion.choices[0].message.content
+  ) {
+    throw new Error("no response from chatgpt");
+  }
+
+  return completion.choices[0].message.content;
 }
