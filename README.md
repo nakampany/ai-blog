@@ -1,5 +1,7 @@
 # AI Blog Reviewer
 
+![index](./docs/images/index.png)
+
 ## Run Development Server
 
 1. Create `.env.local` file and write a OpenAI API key.
