@@ -25,4 +25,4 @@ This has ChatGPT review a corporate blog post.
 - Lint
   - `npm run lint`
 - Format
-  - `npm run fotmat`
+  - `npm run format`

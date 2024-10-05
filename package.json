@@ -1,30 +1,36 @@
 {
-  "name": "ai-blog-reviewer",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "format": "prettier . --write"
-  },
-  "dependencies": {
-    "next": "14.2.5",
-    "openai": "^4.52.7",
-    "react": "^18",
-    "react-dom": "^18",
-    "react-markdown": "^9.0.1"
-  },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.5",
-    "postcss": "^8",
-    "prettier": "3.3.3",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
-  }
+    "name": "ai-blog-reviewer",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "biome lint .",
+        "fix": "biome check --write .",
+        "format": "biome format .",
+        "format:fix": "biome format --write .",
+        "ci": "biome ci ."
+    },
+    "dependencies": {
+        "next": "^14.2.14",
+        "openai": "^4.52.7",
+        "react": "^18",
+        "react-dom": "^18",
+        "react-hook-form": "^7.53.0",
+        "react-markdown": "^9.0.1"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "1.9.3",
+        "@types/node": "^20",
+        "@types/react": "^18",
+        "@types/react-dom": "^18",
+        "eslint": "^8",
+        "eslint-config-next": "14.2.5",
+        "lefthook": "^1.7.18",
+        "postcss": "^8",
+        "prettier": "3.3.3",
+        "tailwindcss": "^3.4.1",
+        "typescript": "^5"
+    }
 }
