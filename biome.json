@@ -1,0 +1,38 @@
+{
+    "$schema": "https://biomejs.dev/schemas/1.9.3/schema.json",
+    "linter": {
+        "rules": {
+            "recommended": true,
+            "correctness": {
+                "noUndeclaredVariables": "error",
+                "noUnusedVariables": "error",
+                "useExhaustiveDependencies": "error",
+                "useHookAtTopLevel": "error"
+            },
+            "style": {
+                "noNamespace": "error"
+            },
+            "suspicious": {
+                "noConsoleLog": "error"
+            },
+            "complexity": {
+                "noForEach": "off"
+            }
+        }
+    },
+    "files": {
+        "ignore": ["node_modules", ".vscode", "vite.config.*", ".next"]
+    },
+    "formatter": {
+        "indentStyle": "space",
+        "indentWidth": 4
+    },
+    "javascript": {
+        "formatter": {
+            "semicolons": "asNeeded",
+            "trailingCommas": "none",
+            "quoteStyle": "single"
+        },
+        "globals": ["Stage"]
+    }
+}
