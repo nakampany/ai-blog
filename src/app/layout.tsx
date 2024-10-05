@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
 import React from 'react'
+import { Layout } from '@/components/layouts/Layout'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -11,7 +12,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="ja" className={inter.className}>
-            <main>{children}</main>
+            <Layout>{children}</Layout>
         </html>
     )
 }

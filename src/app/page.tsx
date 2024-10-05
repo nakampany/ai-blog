@@ -4,31 +4,13 @@ import { useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { reviewBlogPost } from '../services/reviewService'
 import React from 'react'
-import { Header } from '@/components/layouts/Header'
-import { SideBar } from '@/components/layouts/SideBar'
+import { TextField } from '@mui/material'
 
 export default function Home() {
-    const [open, setOpen] = React.useState(false)
-
-    const toggleDrawer = (newOpen: boolean) => () => {
-        setOpen(newOpen)
-    }
-
     return (
-        <div
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                minHeight: '100vh'
-            }}
-        >
-            <Header onClick={toggleDrawer(true)} />
-            <SideBar open={open} onClose={toggleDrawer(false)} />
-            <main className="min-h-screen p-12">
-                <h1 className="text-center text-2xl mb-8">AI Blog Reviewer</h1>
-                <Reviewer />
-            </main>
-        </div>
+        <>
+            <Reviewer />
+        </>
     )
 }
 
@@ -63,30 +45,34 @@ function Reviewer() {
 
     return (
         <>
-            <input
+            <TextField
                 type="text"
                 name="title"
                 placeholder="タイトル"
                 value={title}
                 onChange={(event) => setTitle(event.target.value)}
                 className="block w-full border-0 p-2 mb-4"
+                fullWidth
             />
-            <input
+            <TextField
                 type="text"
                 name="tags"
                 placeholder="タグ（カンマ区切りで5個まで）"
                 value={tags}
                 onChange={(event) => setTags(event.target.value)}
                 className="block w-full border-0 p-2 mb-4"
+                fullWidth
             />
-            <textarea
+            <TextField
                 name="body"
                 placeholder="本文（Markdown記法）"
                 rows={10}
                 value={body}
                 onChange={(event) => setBody(event.target.value)}
                 className="block w-full border-0 p-2 mb-4"
-            ></textarea>
+                multiline
+                fullWidth
+            />
             {isReviewing ? (
                 <p className="float-right">
                     Reviewing... It takes a minute at most.
