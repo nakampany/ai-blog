@@ -1,38 +1,8 @@
-'use client'
-
 import { useState } from 'react'
 import ReactMarkdown from 'react-markdown'
-import { reviewBlogPost } from '../services/reviewService'
-import React from 'react'
-import { Header } from '@/components/layouts/Header'
-import { SideBar } from '@/components/layouts/SideBar'
+import { reviewBlogPost } from '../../services/reviewService'
 
-export default function Home() {
-    const [open, setOpen] = React.useState(false)
-
-    const toggleDrawer = (newOpen: boolean) => () => {
-        setOpen(newOpen)
-    }
-
-    return (
-        <div
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                minHeight: '100vh'
-            }}
-        >
-            <Header onClick={toggleDrawer(true)} />
-            <SideBar open={open} onClose={toggleDrawer(false)} />
-            <main className="min-h-screen p-12">
-                <h1 className="text-center text-2xl mb-8">AI Blog Reviewer</h1>
-                <Reviewer />
-            </main>
-        </div>
-    )
-}
-
-function Reviewer() {
+export default function Reviewer() {
     const [title, setTitle] = useState('')
     const [tags, setTags] = useState('')
     const [body, setBody] = useState('')
@@ -41,7 +11,7 @@ function Reviewer() {
 
     const prompt = `
   You are a great IT blog writer.
-  Please review the blog post below and provide feedback
+  Please review the blog post below and provide feedback.
   `
 
     async function onReview() {
