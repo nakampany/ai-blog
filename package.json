@@ -13,6 +13,10 @@
         "ci": "biome ci ."
     },
     "dependencies": {
+        "@emotion/react": "^11.13.3",
+        "@emotion/styled": "^11.13.0",
+        "@mui/icons-material": "^6.1.2",
+        "@mui/material": "^6.1.2",
         "next": "^14.2.14",
         "openai": "^4.52.7",
         "react": "^18",

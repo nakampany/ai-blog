@@ -1,11 +1,20 @@
 "use client";
 
 import React from 'react';
+import AppBar from '@mui/material/AppBar';
+import { Toolbar, Button } from '@mui/material';
 
-export const Header: React.FC = () => {
+interface props {
+  onClick: () => void;
+}
+
+export const Header: React.FC<props> = (props) => {
   return (
-    <header>
-      <h1>Header</h1>
-    </header>
+    <AppBar position="static" style={{ backgroundColor: 'gray' }}>
+      <Toolbar>
+          Header
+      </Toolbar>
+      <Button onClick={props.onClick}>Open drawer</Button>
+    </AppBar>
   );
 };
