@@ -8,7 +8,7 @@ import { TextField } from '@mui/material'
 
 export const RewriteLong = () => {
     const [title, setTitle] = useState('')
-    const [tags, setTags] = useState('')
+    const [keyWords, setKeyWords] = useState('')
     const [body, setBody] = useState('')
     const [reviewComment, setReviewComment] = useState('')
     const [isReviewing, setIsReviewing] = useState(false)
@@ -23,7 +23,7 @@ export const RewriteLong = () => {
         setReviewComment('')
         let comment = ''
         try {
-            comment = await reviewBlogPost(title, tags, body, prompt)
+            comment = await reviewBlogPost(title, keyWords, body, prompt)
         } catch (e) {
             setReviewComment('')
             window.alert('error')
@@ -51,10 +51,10 @@ export const RewriteLong = () => {
             />
             <TextField
                 type="text"
-                name="tags"
+                name="keyWords"
                 placeholder="キーワード（カンマ区切りで5個まで）"
-                value={tags}
-                onChange={(event) => setTags(event.target.value)}
+                value={keyWords}
+                onChange={(event) => setKeyWords(event.target.value)}
                 className="block w-full border-0 p-2 mb-4"
                 fullWidth
             />

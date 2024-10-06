@@ -7,17 +7,17 @@ const openai = new OpenAI({
 
 export async function reviewBlogPost(
     title: string,
-    tags: string,
+    keyWords: string,
     body: string,
     prompt: string
 ) {
     const blogPrompt = `
-  ${prompt}
+    ${prompt}
 
-  Title: ${title}
-  Tags(comma separated): ${tags}
-  ${body}
-  `
+    Title: ${title}
+    keyWords(comma separated): ${keyWords}
+    ${body}
+    `
 
     const completion = await openai.chat.completions.create({
         messages: [
