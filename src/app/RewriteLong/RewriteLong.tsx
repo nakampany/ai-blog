@@ -68,7 +68,7 @@ export const RewriteLong = () => {
             />
             {isReviewing ? (
                 <p className="float-right">
-                    Reviewing... It takes a minute at most.
+                    レビュー中です... 最長でも1分ほどかかります。
                 </p>
             ) : (
                 <button
@@ -76,7 +76,7 @@ export const RewriteLong = () => {
                     className="float-right rounded-md bg-indigo-600 mb-4 px-3 py-2 font-semibold text-white hover:bg-indigo-500 focus:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     onClick={onReview}
                 >
-                    Review By ChatGPT
+                    提案
                 </button>
             )}
             <ReactMarkdown className="markdown clear-right">
