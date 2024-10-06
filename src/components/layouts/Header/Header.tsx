@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import React from 'react'
 import AppBar from '@mui/material/AppBar'
@@ -58,6 +58,16 @@ export const Header: React.FC<Props> = (props) => {
                 </Box>
 
                 <Box display="flex" alignItems="center">
+                    <Typography
+                        style={{ marginRight: '20px', fontWeight: 'bold' }}
+                    >
+                        使い方Notion
+                    </Typography>
+                    <Typography
+                        style={{ marginRight: '20px', fontWeight: 'bold' }}
+                    >
+                        その他Notion（採用文など）
+                    </Typography>
                     <Typography
                         style={{ marginRight: '20px', fontWeight: 'bold' }}
                     >

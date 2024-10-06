@@ -6,7 +6,7 @@ import { reviewBlogPost } from '../../services/reviewService'
 import React from 'react'
 import { TextField } from '@mui/material'
 
-export const TitleGeneration = () => {
+export const RewriteShort = () => {
     const [title, setTitle] = useState('')
     const [tags, setTags] = useState('')
     const [body, setBody] = useState('')
@@ -36,8 +36,8 @@ export const TitleGeneration = () => {
     }
     return (
         <main className="min-h-screen p-12">
-            <h1 className="text-center text-2xl mb-8">タイトル生成</h1>
-            <p>以下のフォームにブログのキーワードを入力してください。</p>
+            <h1 className="text-center text-2xl mb-8">リライト（短文）</h1>
+            <p>以下のフォームにブログのタイトルとキーワード、リライトしたい文章を入力してください。</p>
 
             <TextField
                 type="text"
@@ -55,6 +55,16 @@ export const TitleGeneration = () => {
                 value={tags}
                 onChange={(event) => setTags(event.target.value)}
                 className="block w-full border-0 p-2 mb-4"
+                fullWidth
+            />
+            <TextField
+                name="body"
+                placeholder="リライトしたい文章（Markdown記法）"
+                rows={10}
+                value={body}
+                onChange={(event) => setBody(event.target.value)}
+                className="block w-full border-0 p-2 mb-4"
+                multiline
                 fullWidth
             />
             {isReviewing ? (

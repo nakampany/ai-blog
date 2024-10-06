@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import Link from 'next/link'
 import {
@@ -18,18 +20,19 @@ interface props {
     onClose: () => void
 }
 
-export const SideBar: React.FC<props> = (props) => {
-    const menuItems = [
-        { text: 'タイトル生成', link: '/TitleGeneration' },
-        { text: 'リード文', link: '/LeadText' },
-        { text: '本文', link: '/BodyText' },
-        { text: 'まとめ', link: '/Conclusion' },
-        { text: 'リライト（短文）', link: '/RewriteShort' },
-        { text: 'リライト（長文）', link: '/RewriteLong' },
-        { text: '誤字脱字チェック', link: '/CheckMistakes' },
-        { text: '自由入力', link: '/FreeInput' }
-    ]
+const menuItems = [
+    { text: 'タイトル生成', link: '/TitleGeneration' },
+    { text: 'アウトライン', link: '/Outline' },
+    { text: 'リード文', link: '/LeadText' },
+    { text: '本文', link: '/BodyText' },
+    { text: 'まとめ', link: '/Conclusion' },
+    { text: 'リライト（短文）', link: '/RewriteShort' },
+    { text: 'リライト（長文）', link: '/RewriteLong' },
+    { text: '誤字脱字チェック', link: '/CheckMistakes' },
+    { text: '自由入力', link: '/FreeInput' }
+]
 
+export const SideBar: React.FC<props> = (props) => {
     return (
         <Drawer
             variant="temporary"
@@ -48,7 +51,7 @@ export const SideBar: React.FC<props> = (props) => {
                     {menuItems.map((item, index) => (
                         <ListItem key={item.text} disablePadding>
                             <Link href={item.link} passHref>
-                                <ListItemButton component="a">
+                                <ListItemButton>
                                     <ListItemIcon>
                                         {index % 2 === 0 ? (
                                             <InboxIcon />

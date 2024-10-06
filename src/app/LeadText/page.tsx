@@ -1,11 +1,10 @@
-import React from 'react'
+'use client'
 
-export default function TitleGeneration() {
-    return (
-        <main className="min-h-screen p-12">
-            <h1 className="text-center text-2xl mb-8">タイトル生成</h1>
-            {/* タイトル生成ロジックとUIを追加 */}
-            <p>ここにタイトル生成機能を実装します。</p>
-        </main>
-    )
+import React from 'react'
+import { LeadText } from './LeadText'
+
+const Page: React.FC = () => {
+    return <LeadText />
 }
+
+export default Page

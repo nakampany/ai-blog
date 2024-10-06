@@ -6,7 +6,7 @@ import { reviewBlogPost } from '../../services/reviewService'
 import React from 'react'
 import { TextField } from '@mui/material'
 
-export const TitleGeneration = () => {
+export const CheckMistakes = () => {
     const [title, setTitle] = useState('')
     const [tags, setTags] = useState('')
     const [body, setBody] = useState('')
@@ -36,25 +36,17 @@ export const TitleGeneration = () => {
     }
     return (
         <main className="min-h-screen p-12">
-            <h1 className="text-center text-2xl mb-8">タイトル生成</h1>
-            <p>以下のフォームにブログのキーワードを入力してください。</p>
+            <h1 className="text-center text-2xl mb-8">誤字脱字チェック</h1>
+            <p>以下のフォームにチェックしたい文章を10,000文字以下で入力してください。</p>
 
             <TextField
-                type="text"
-                name="title"
-                placeholder="タイトル"
-                value={title}
-                onChange={(event) => setTitle(event.target.value)}
+                name="body"
+                placeholder="本文（Markdown記法）"
+                rows={10}
+                value={body}
+                onChange={(event) => setBody(event.target.value)}
                 className="block w-full border-0 p-2 mb-4"
-                fullWidth
-            />
-            <TextField
-                type="text"
-                name="tags"
-                placeholder="キーワード（カンマ区切りで5個まで）"
-                value={tags}
-                onChange={(event) => setTags(event.target.value)}
-                className="block w-full border-0 p-2 mb-4"
+                multiline
                 fullWidth
             />
             {isReviewing ? (

@@ -1,10 +1,10 @@
 'use client'
 
 import React from 'react'
-import { RewriteLong } from './RewriteLong'
+import { TitleGeneration } from './TitleGeneration'
 
 const Page: React.FC = () => {
-    return <RewriteLong />
+    return <TitleGeneration />
 }
 
 export default Page

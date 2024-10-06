@@ -6,7 +6,7 @@ import { reviewBlogPost } from '../../services/reviewService'
 import React from 'react'
 import { TextField } from '@mui/material'
 
-export const TitleGeneration = () => {
+export const Outline = () => {
     const [title, setTitle] = useState('')
     const [tags, setTags] = useState('')
     const [body, setBody] = useState('')
@@ -36,8 +36,10 @@ export const TitleGeneration = () => {
     }
     return (
         <main className="min-h-screen p-12">
-            <h1 className="text-center text-2xl mb-8">タイトル生成</h1>
-            <p>以下のフォームにブログのキーワードを入力してください。</p>
+            <h1 className="text-center text-2xl mb-8">アウトライン生成</h1>
+            <p>
+                以下のフォームにブログのタイトルとキーワードを入力してください。
+            </p>
 
             <TextField
                 type="text"

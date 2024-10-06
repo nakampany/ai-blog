@@ -1,10 +1,10 @@
 'use client'
 
 import React from 'react'
-import { RewriteLong } from './RewriteLong'
+import { Outline } from './Outline'
 
 const Page: React.FC = () => {
-    return <RewriteLong />
+    return <Outline />
 }
 
 export default Page
