@@ -1,12 +1,9 @@
-import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import React from 'react'
+import { Layout } from '@/components/layouts/Layout'
 
 const inter = Inter({ subsets: ['latin'] })
-
-export const metadata: Metadata = {
-    title: 'AI Blog Reviewer'
-}
 
 export default function RootLayout({
     children
@@ -14,8 +11,8 @@ export default function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <html lang="ja">
-            <body className={inter.className}>{children}</body>
+        <html lang="ja" className={inter.className}>
+            <Layout>{children}</Layout>
         </html>
     )
 }
