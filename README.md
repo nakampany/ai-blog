@@ -1,10 +1,13 @@
 # AI Blog Reviewer
 
-This has ChatGPT review a corporate blog post.
-
-![index](./docs/images/index.png)
 
 ## Run Development Server
+
+1. npm i
+
+   ```text
+   npm i
+   ```
 
 1. Create `.env.local` file and write a OpenAI API key.
 

@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import type React from 'react'
 import { Outline } from './Outline'
 
 const Page: React.FC = () => {

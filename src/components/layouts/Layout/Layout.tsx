@@ -1,8 +1,8 @@
 'use client'
 
-import React from 'react'
 import { Header } from '@/components/layouts/Header'
 import { SideBar } from '@/components/layouts/SideBar'
+import React from 'react'
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({
     children

@@ -1,19 +1,19 @@
 'use client'
 
-import React from 'react'
-import Link from 'next/link'
+import MailIcon from '@mui/icons-material/Mail'
+import InboxIcon from '@mui/icons-material/MoveToInbox'
 import {
+    Box,
+    Divider,
     Drawer,
     List,
     ListItem,
-    ListItemText,
-    Box,
     ListItemButton,
     ListItemIcon,
-    Divider
+    ListItemText
 } from '@mui/material'
-import InboxIcon from '@mui/icons-material/MoveToInbox'
-import MailIcon from '@mui/icons-material/Mail'
+import Link from 'next/link'
+import type React from 'react'
 
 interface props {
     open: boolean
