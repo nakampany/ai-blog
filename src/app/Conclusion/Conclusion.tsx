@@ -37,7 +37,9 @@ export const Conclusion = () => {
     return (
         <main className="min-h-screen p-12">
             <h1 className="text-center text-2xl mb-8">まとめ文章生成</h1>
-            <p>以下のフォームにブログのタイトルとキーワードと本文を入力してください。</p>
+            <p>
+                以下のフォームにブログのタイトルとキーワードと本文を入力してください。
+            </p>
 
             <TextField
                 type="text"

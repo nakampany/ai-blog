@@ -7,8 +7,6 @@ import React from 'react'
 import { TextField } from '@mui/material'
 
 export const FreeInput = () => {
-    const [title, setTitle] = useState('')
-    const [tags, setTags] = useState('')
     const [body, setBody] = useState('')
     const [reviewComment, setReviewComment] = useState('')
     const [isReviewing, setIsReviewing] = useState(false)
@@ -23,7 +21,7 @@ export const FreeInput = () => {
         setReviewComment('')
         let comment = ''
         try {
-            comment = await reviewBlogPost(title, tags, body, prompt)
+            comment = await reviewBlogPost('', '', body, prompt)
         } catch (e) {
             setReviewComment('')
             window.alert('error')

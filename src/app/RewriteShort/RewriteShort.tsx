@@ -37,7 +37,9 @@ export const RewriteShort = () => {
     return (
         <main className="min-h-screen p-12">
             <h1 className="text-center text-2xl mb-8">リライト（短文）</h1>
-            <p>以下のフォームにブログのタイトルとキーワード、リライトしたい文章を入力してください。</p>
+            <p>
+                以下のフォームにブログのタイトルとキーワード、リライトしたい文章を入力してください。
+            </p>
 
             <TextField
                 type="text"

@@ -7,8 +7,6 @@ import React from 'react'
 import { TextField } from '@mui/material'
 
 export const CheckMistakes = () => {
-    const [title, setTitle] = useState('')
-    const [tags, setTags] = useState('')
     const [body, setBody] = useState('')
     const [reviewComment, setReviewComment] = useState('')
     const [isReviewing, setIsReviewing] = useState(false)
@@ -23,7 +21,7 @@ export const CheckMistakes = () => {
         setReviewComment('')
         let comment = ''
         try {
-            comment = await reviewBlogPost(title, tags, body, prompt)
+            comment = await reviewBlogPost('', '', body, prompt)
         } catch (e) {
             setReviewComment('')
             window.alert('error')
@@ -37,7 +35,9 @@ export const CheckMistakes = () => {
     return (
         <main className="min-h-screen p-12">
             <h1 className="text-center text-2xl mb-8">誤字脱字チェック</h1>
-            <p>以下のフォームにチェックしたい文章を10,000文字以下で入力してください。</p>
+            <p>
+                以下のフォームにチェックしたい文章を10,000文字以下で入力してください。
+            </p>
 
             <TextField
                 name="body"

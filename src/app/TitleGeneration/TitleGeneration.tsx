@@ -9,7 +9,6 @@ import { TextField } from '@mui/material'
 export const TitleGeneration = () => {
     const [title, setTitle] = useState('')
     const [tags, setTags] = useState('')
-    const [body, setBody] = useState('')
     const [reviewComment, setReviewComment] = useState('')
     const [isReviewing, setIsReviewing] = useState(false)
 
@@ -23,7 +22,7 @@ export const TitleGeneration = () => {
         setReviewComment('')
         let comment = ''
         try {
-            comment = await reviewBlogPost(title, tags, body, prompt)
+            comment = await reviewBlogPost(title, tags, '', prompt)
         } catch (e) {
             setReviewComment('')
             window.alert('error')

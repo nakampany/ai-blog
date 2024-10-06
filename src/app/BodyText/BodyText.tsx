@@ -37,7 +37,9 @@ export const BodyText = () => {
     return (
         <main className="min-h-screen p-12">
             <h1 className="text-center text-2xl mb-8">本文生成</h1>
-            <p>以下のフォームにブログのタイトルとキーワード、アウトラインを入力してください。</p>
+            <p>
+                以下のフォームにブログのタイトルとキーワード、アウトラインを入力してください。
+            </p>
 
             <TextField
                 type="text"

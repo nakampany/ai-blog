@@ -36,8 +36,12 @@ export const LeadText = () => {
     }
     return (
         <main className="min-h-screen p-12">
-            <h1 className="text-center text-2xl mb-8">リード文（導入文）生成</h1>
-        <p>以下のフォームにブログのタイトルとキーワード、アウトラインを入力してください。</p>
+            <h1 className="text-center text-2xl mb-8">
+                リード文（導入文）生成
+            </h1>
+            <p>
+                以下のフォームにブログのタイトルとキーワード、アウトラインを入力してください。
+            </p>
 
             <TextField
                 type="text"
