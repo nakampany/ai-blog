@@ -5,6 +5,7 @@ import { useState } from 'react'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import { reviewBlogPost } from '../../services/reviewService'
+import { prompt } from './prompts'
 
 export const RewriteLong = () => {
     const [title, setTitle] = useState('')
@@ -12,11 +13,6 @@ export const RewriteLong = () => {
     const [body, setBody] = useState('')
     const [reviewComment, setReviewComment] = useState('')
     const [isReviewing, setIsReviewing] = useState(false)
-
-    const prompt = `
-    You are a great IT blog writer.
-    Please review the blog post below and provide feedback
-    `
 
     async function onReview() {
         setIsReviewing(true)
@@ -70,7 +66,7 @@ export const RewriteLong = () => {
             />
             {isReviewing ? (
                 <p className="float-right">
-                    レビュー中です... 最長でも1分ほどかかります。
+                    生成中です... 最長でも1分ほどかかります。
                 </p>
             ) : (
                 <button

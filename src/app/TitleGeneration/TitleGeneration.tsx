@@ -5,24 +5,20 @@ import { useState } from 'react'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import { reviewBlogPost } from '../../services/reviewService'
+import { prompt } from './prompts'
 
 export const TitleGeneration = () => {
-    const [title, setTitle] = useState('')
     const [keyWords, setKeyWords] = useState('')
     const [reviewComment, setReviewComment] = useState('')
     const [isReviewing, setIsReviewing] = useState(false)
-
-    const prompt = `
-    You are a great IT blog writer.
-    Please review the blog post below and provide feedback
-    `
+    const [copySuccess, setCopySuccess] = useState('')
 
     async function onReview() {
         setIsReviewing(true)
         setReviewComment('')
         let comment = ''
         try {
-            comment = await reviewBlogPost(title, keyWords, '', prompt)
+            comment = await reviewBlogPost('', keyWords, '', prompt)
         } catch (e) {
             setReviewComment('')
             window.alert('error')
@@ -33,20 +29,24 @@ export const TitleGeneration = () => {
         setReviewComment(comment)
         setIsReviewing(false)
     }
+
+    const copyToClipboard = async () => {
+        if (reviewComment) {
+            try {
+                await navigator.clipboard.writeText(reviewComment)
+                setCopySuccess('コピーしました！')
+            } catch (err) {
+                console.error('Failed to copy text:', err)
+                setCopySuccess('コピーに失敗しました')
+            }
+        }
+    }
+
     return (
         <main className="min-h-screen p-12">
             <h1 className="text-center text-2xl mb-8">タイトル生成</h1>
             <p>以下のフォームにブログのキーワードを入力してください。</p>
 
-            <TextField
-                type="text"
-                name="title"
-                placeholder="タイトル"
-                value={title}
-                onChange={(event) => setTitle(event.target.value)}
-                className="block w-full border-0 p-2 mb-4"
-                fullWidth
-            />
             <TextField
                 type="text"
                 name="keyWords"
@@ -58,7 +58,7 @@ export const TitleGeneration = () => {
             />
             {isReviewing ? (
                 <p className="float-right">
-                    レビュー中です... 最長でも1分ほどかかります。
+                    生成中です... 最長でも1分ほどかかります。
                 </p>
             ) : (
                 <button
@@ -69,9 +69,27 @@ export const TitleGeneration = () => {
                     提案
                 </button>
             )}
+            <p className="text-gray-600 mt-2">
+                文字数: {reviewComment.length} 文字
+            </p>
             <ReactMarkdown className="markdown clear-right">
                 {reviewComment}
             </ReactMarkdown>
+
+            {reviewComment && (
+                <div className="mt-4">
+                    <button
+                        type="button"
+                        className="rounded-md bg-green-600 px-3 py-2 font-semibold text-white hover:bg-green-500 focus:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+                        onClick={copyToClipboard}
+                    >
+                        コピー
+                    </button>
+                    {copySuccess && (
+                        <p className="text-green-600 mt-2">{copySuccess}</p>
+                    )}
+                </div>
+            )}
         </main>
     )
 }

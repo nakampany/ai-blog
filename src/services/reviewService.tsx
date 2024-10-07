@@ -14,6 +14,8 @@ export async function reviewBlogPost(
     const blogPrompt = `
     ${prompt}
 
+    ### ユーザー入力
+
     Title: ${title}
     keyWords(comma separated): ${keyWords}
     ${body}
@@ -23,7 +25,7 @@ export async function reviewBlogPost(
         messages: [
             {
                 role: 'system',
-                content: 'You are a great IT blog writer.'
+                content: 'You are a great blog writer.'
             },
             {
                 role: 'user',
