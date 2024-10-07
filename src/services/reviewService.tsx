@@ -11,6 +11,14 @@ export async function reviewBlogPost(
     body: string,
     prompt: string
 ) {
+    if (!title && !keyWords && !body) {
+        throw new Error('invalid input')
+    }
+
+    if (!prompt) {
+        throw new Error('invalid prompt')
+    }
+
     const blogPrompt = `
     ${prompt}
 
