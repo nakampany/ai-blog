@@ -14,21 +14,13 @@ export const TitleGeneration = () => {
     const [copySuccess, setCopySuccess] = useState('')
     const [hasReviewed, setHasReviewed] = useState(false)
 
-    // ローカルストレージからレビューコメントを取得
     useEffect(() => {
-        const savedReviewComment = localStorage.getItem('reviewComment')
-        if (savedReviewComment) {
-            setReviewComment(savedReviewComment)
+        const storedComment = localStorage.getItem('reviewComment')
+        if (storedComment) {
+            setReviewComment(storedComment)
             setHasReviewed(true)
         }
     }, [])
-
-    // ローカルストレージにレビューコメントを保存
-    useEffect(() => {
-        if (reviewComment) {
-            localStorage.setItem('reviewComment', reviewComment)
-        }
-    }, [reviewComment])
 
     async function onReview() {
         setIsReviewing(true)
@@ -46,6 +38,8 @@ export const TitleGeneration = () => {
         setReviewComment(comment)
         setIsReviewing(false)
         setHasReviewed(true)
+
+        localStorage.setItem('reviewComment', comment)
     }
 
     const copyToClipboard = async () => {
@@ -58,6 +52,12 @@ export const TitleGeneration = () => {
                 setCopySuccess('コピーに失敗しました')
             }
         }
+    }
+
+    const clearReviewHistory = () => {
+        localStorage.removeItem('reviewComment')
+        setReviewComment('')
+        setHasReviewed(false)
     }
 
     return (
@@ -106,6 +106,14 @@ export const TitleGeneration = () => {
                     {copySuccess && (
                         <p className="text-green-600 mt-2">{copySuccess}</p>
                     )}
+
+                    <button
+                        type="button"
+                        className="ml-4 rounded-md bg-red-600 px-3 py-2 font-semibold text-white hover:bg-red-500 focus:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+                        onClick={clearReviewHistory}
+                    >
+                        履歴を削除
+                    </button>
                 </div>
             )}
         </main>
