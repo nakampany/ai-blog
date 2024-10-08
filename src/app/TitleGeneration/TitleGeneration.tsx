@@ -1,7 +1,7 @@
 'use client'
 
 import { TextField } from '@mui/material'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import { reviewBlogPost } from '../../services/reviewService'
@@ -13,6 +13,22 @@ export const TitleGeneration = () => {
     const [isReviewing, setIsReviewing] = useState(false)
     const [copySuccess, setCopySuccess] = useState('')
     const [hasReviewed, setHasReviewed] = useState(false)
+
+    // ローカルストレージからレビューコメントを取得
+    useEffect(() => {
+        const savedReviewComment = localStorage.getItem('reviewComment')
+        if (savedReviewComment) {
+            setReviewComment(savedReviewComment)
+            setHasReviewed(true)
+        }
+    }, [])
+
+    // ローカルストレージにレビューコメントを保存
+    useEffect(() => {
+        if (reviewComment) {
+            localStorage.setItem('reviewComment', reviewComment)
+        }
+    }, [reviewComment])
 
     async function onReview() {
         setIsReviewing(true)

@@ -21,7 +21,7 @@
         }
     },
     "files": {
-        "ignore": ["node_modules", ".vscode", "vite.config.*", ".next"]
+        "ignore": ["node_modules", ".vscode", ".next"]
     },
     "formatter": {
         "indentStyle": "space",
