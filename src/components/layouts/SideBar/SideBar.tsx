@@ -1,7 +1,14 @@
 'use client'
 
+import ArticleIcon from '@mui/icons-material/Article'
+import ChecklistIcon from '@mui/icons-material/Checklist'
+import EditNoteIcon from '@mui/icons-material/EditNote'
 import MailIcon from '@mui/icons-material/Mail'
-import InboxIcon from '@mui/icons-material/MoveToInbox'
+import NotesIcon from '@mui/icons-material/Notes'
+import ShortTextIcon from '@mui/icons-material/ShortText'
+import SpellcheckIcon from '@mui/icons-material/Spellcheck'
+import TitleIcon from '@mui/icons-material/Title'
+import TocIcon from '@mui/icons-material/Toc'
 import {
     Box,
     Divider,
@@ -43,20 +50,42 @@ export const SideBar: React.FC<props> = (props) => {
             <Box sx={{ width: 250 }} role="presentation">
                 <List>
                     <ListItem>
-                        <ListItemText primary="メニュー" />
+                        <ListItemText primary="機能一覧" />
                     </ListItem>
                 </List>
                 <Divider />
                 <List>
-                    {menuItems.map((item, index) => (
-                        <ListItem key={item.text} disablePadding>
+                    {menuItems.map((item) => (
+                        <ListItem key={item.text} disablePadding sx={{ pl: 3 }}>
                             <Link href={item.link} passHref>
                                 <ListItemButton>
                                     <ListItemIcon>
-                                        {index % 2 === 0 ? (
-                                            <InboxIcon />
-                                        ) : (
-                                            <MailIcon />
+                                        {item.link === '/TitleGeneration' && (
+                                            <TitleIcon />
+                                        )}
+                                        {item.link === '/Outline' && (
+                                            <TocIcon />
+                                        )}
+                                        {item.link === '/LeadText' && (
+                                            <ShortTextIcon />
+                                        )}
+                                        {item.link === '/BodyText' && (
+                                            <ArticleIcon />
+                                        )}
+                                        {item.link === '/Conclusion' && (
+                                            <NotesIcon />
+                                        )}
+                                        {item.link === '/RewriteShort' && (
+                                            <EditNoteIcon />
+                                        )}
+                                        {item.link === '/RewriteLong' && (
+                                            <EditNoteIcon />
+                                        )}
+                                        {item.link === '/CheckMistakes' && (
+                                            <ChecklistIcon />
+                                        )}
+                                        {item.link === '/FreeInput' && (
+                                            <SpellcheckIcon />
                                         )}
                                     </ListItemIcon>
                                     <ListItemText primary={item.text} />

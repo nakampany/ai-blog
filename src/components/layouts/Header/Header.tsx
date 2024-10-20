@@ -1,16 +1,18 @@
 'use client'
 
-import AppBar from '@mui/material/AppBar'
-import Avatar from '@mui/material/Avatar'
-import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
-import Divider from '@mui/material/Divider'
-import IconButton from '@mui/material/IconButton'
-import Menu from '@mui/material/Menu'
-import MenuItem from '@mui/material/MenuItem'
-import MenuList from '@mui/material/MenuList'
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
+import MenuIcon from '@mui/icons-material/Menu'
+import {
+    AppBar,
+    Avatar,
+    Box,
+    Divider,
+    IconButton,
+    Menu,
+    MenuItem,
+    MenuList,
+    Toolbar,
+    Typography
+} from '@mui/material'
 import type React from 'react'
 import { useState } from 'react'
 
@@ -46,15 +48,20 @@ export const Header: React.FC<Props> = (props) => {
                     </IconButton>
                     <Typography variant="h6" component="div">
                         <a
-                            href="/"
+                            href="/TitleGeneration"
                             style={{ color: 'white', textDecoration: 'none' }}
                         >
                             記事執筆支援ツール
                         </a>
                     </Typography>
-                    <Button onClick={props.onClick}>
-                        ドロワーがお開きします
-                    </Button>
+                    <IconButton
+                        edge="end"
+                        color="inherit"
+                        aria-label="menu"
+                        onClick={props.onClick}
+                    >
+                        <MenuIcon />
+                    </IconButton>
                 </Box>
 
                 <Box display="flex" alignItems="center">
@@ -67,11 +74,6 @@ export const Header: React.FC<Props> = (props) => {
                         style={{ marginRight: '20px', fontWeight: 'bold' }}
                     >
                         その他Notion（採用文など）
-                    </Typography>
-                    <Typography
-                        style={{ marginRight: '20px', fontWeight: 'bold' }}
-                    >
-                        合計 17,996 トークン
                     </Typography>
                     <IconButton onClick={handleMenuOpen}>
                         <Avatar
@@ -89,7 +91,7 @@ export const Header: React.FC<Props> = (props) => {
                             <MenuItem disabled>aaa@example.com</MenuItem>
                             <Divider />
                             <MenuItem onClick={handleMenuClose}>
-                                ログイン機能作りたいかも？ログアウト
+                                ログイン機能作りたいかも？
                             </MenuItem>
                         </MenuList>
                     </Menu>

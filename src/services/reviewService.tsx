@@ -12,17 +12,17 @@ export async function reviewBlogPost(
     prompt: string
 ) {
     if (!title && !keyWords && !body) {
-        throw new Error('invalid input')
+        throw new Error('All inputs are empty')
     }
 
     if (!prompt) {
-        throw new Error('invalid prompt')
+        throw new Error('Prompt is empty')
     }
 
     const blogPrompt = `
     ${prompt}
 
-    ### ユーザー入力
+    ### user input
 
     Title: ${title}
     keyWords(comma separated): ${keyWords}
@@ -47,7 +47,7 @@ export async function reviewBlogPost(
         completion.choices.length === 0 ||
         !completion.choices[0].message.content
     ) {
-        throw new Error('no response from chatgpt')
+        throw new Error('Failed to generate review comment')
     }
 
     return completion.choices[0].message.content

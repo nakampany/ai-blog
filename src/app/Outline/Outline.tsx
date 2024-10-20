@@ -1,7 +1,7 @@
 'use client'
 
 import { TextField } from '@mui/material'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import { reviewBlogPost } from '../../services/reviewService'
@@ -12,13 +12,23 @@ export const Outline = () => {
     const [keyWords, setKeyWords] = useState('')
     const [reviewComment, setReviewComment] = useState('')
     const [isReviewing, setIsReviewing] = useState(false)
+    const [copySuccess, setCopySuccess] = useState('')
+    const [hasReviewed, setHasReviewed] = useState(false)
+
+    useEffect(() => {
+        const storedComment = localStorage.getItem('reviewComment')
+        if (storedComment) {
+            setReviewComment(storedComment)
+            setHasReviewed(true)
+        }
+    }, [])
 
     async function onReview() {
         setIsReviewing(true)
         setReviewComment('')
         let comment = ''
         try {
-            comment = await reviewBlogPost(title, keyWords, '', prompt)
+            comment = await reviewBlogPost('', keyWords, '', prompt)
         } catch (e) {
             setReviewComment('')
             window.alert('error')
@@ -28,7 +38,29 @@ export const Outline = () => {
         }
         setReviewComment(comment)
         setIsReviewing(false)
+        setHasReviewed(true)
+
+        localStorage.setItem('reviewComment', comment)
     }
+
+    const copyToClipboard = async () => {
+        if (reviewComment) {
+            try {
+                await navigator.clipboard.writeText(reviewComment)
+                setCopySuccess('コピーしました！')
+            } catch (err) {
+                console.error('Failed to copy text:', err)
+                setCopySuccess('コピーに失敗しました')
+            }
+        }
+    }
+
+    const clearReviewHistory = () => {
+        localStorage.removeItem('reviewComment')
+        setReviewComment('')
+        setHasReviewed(false)
+    }
+
     return (
         <main className="min-h-screen p-12">
             <h1 className="text-center text-2xl mb-8">アウトライン生成</h1>
@@ -64,12 +96,38 @@ export const Outline = () => {
                     className="float-right rounded-md bg-indigo-600 mb-4 px-3 py-2 font-semibold text-white hover:bg-indigo-500 focus:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     onClick={onReview}
                 >
-                    提案
+                    {hasReviewed ? '再提案' : '提案'}
                 </button>
             )}
+            <p className="text-gray-600 mt-2">
+                文字数: {reviewComment.length} 文字
+            </p>
             <ReactMarkdown className="markdown clear-right">
                 {reviewComment}
             </ReactMarkdown>
+
+            {reviewComment && (
+                <div className="mt-4">
+                    <button
+                        type="button"
+                        className="rounded-md bg-green-600 px-3 py-2 font-semibold text-white hover:bg-green-500 focus:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+                        onClick={copyToClipboard}
+                    >
+                        コピー
+                    </button>
+                    {copySuccess && (
+                        <p className="text-green-600 mt-2">{copySuccess}</p>
+                    )}
+
+                    <button
+                        type="button"
+                        className="ml-4 rounded-md bg-red-600 px-3 py-2 font-semibold text-white hover:bg-red-500 focus:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+                        onClick={clearReviewHistory}
+                    >
+                        履歴を削除
+                    </button>
+                </div>
+            )}
         </main>
     )
 }

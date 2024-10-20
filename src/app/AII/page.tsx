@@ -1,64 +1,28 @@
 'use client'
 
 import { TextField } from '@mui/material'
-import { useEffect, useState } from 'react'
-import React from 'react'
+import type React from 'react'
 import ReactMarkdown from 'react-markdown'
-import { reviewBlogPost } from '../../services/reviewService'
-import { prompt } from './prompts'
+import { useAll } from './useAll'
 
-export const TitleGeneration = () => {
-    const [keyWords, setKeyWords] = useState('')
-    const [reviewComment, setReviewComment] = useState('')
-    const [isReviewing, setIsReviewing] = useState(false)
-    const [copySuccess, setCopySuccess] = useState('')
-    const [hasReviewed, setHasReviewed] = useState(false)
+const Page: React.FC = () => {
+    return <All />
+}
 
-    useEffect(() => {
-        const storedComment = localStorage.getItem('reviewComment')
-        if (storedComment) {
-            setReviewComment(storedComment)
-            setHasReviewed(true)
-        }
-    }, [])
+export default Page
 
-    async function onReview() {
-        setIsReviewing(true)
-        setReviewComment('')
-        let comment = ''
-        try {
-            comment = await reviewBlogPost('', keyWords, '', prompt)
-        } catch (e) {
-            setReviewComment('')
-            window.alert('error')
-            console.error('error', e)
-            setIsReviewing(false)
-            return
-        }
-        setReviewComment(comment)
-        setIsReviewing(false)
-        setHasReviewed(true)
-
-        localStorage.setItem('reviewComment', comment)
-    }
-
-    const copyToClipboard = async () => {
-        if (reviewComment) {
-            try {
-                await navigator.clipboard.writeText(reviewComment)
-                setCopySuccess('コピーしました！')
-            } catch (err) {
-                console.error('Failed to copy text:', err)
-                setCopySuccess('コピーに失敗しました')
-            }
-        }
-    }
-
-    const clearReviewHistory = () => {
-        localStorage.removeItem('reviewComment')
-        setReviewComment('')
-        setHasReviewed(false)
-    }
+const All = () => {
+    const {
+        keyWords,
+        setKeyWords,
+        reviewComment,
+        isReviewing,
+        hasReviewed,
+        copySuccess,
+        onReview,
+        copyToClipboard,
+        clearReviewHistory
+    } = useAll()
 
     return (
         <main className="min-h-screen p-12">
