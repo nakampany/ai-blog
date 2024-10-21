@@ -22,7 +22,9 @@ const Page: React.FC = () => {
 
     return (
         <main className="min-h-screen p-12">
-            <h1 className="text-center text-2xl mb-8">タイトル生成</h1>
+            <h1 className="text-center text-2xl mb-8 font-bold">
+                タイトル生成
+            </h1>
             <p>以下のフォームにブログのキーワードを入力してください。</p>
 
             <KeywordInput.Component

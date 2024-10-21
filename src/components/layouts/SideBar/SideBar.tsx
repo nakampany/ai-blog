@@ -3,7 +3,7 @@
 import ArticleIcon from '@mui/icons-material/Article'
 import ChecklistIcon from '@mui/icons-material/Checklist'
 import EditNoteIcon from '@mui/icons-material/EditNote'
-import MailIcon from '@mui/icons-material/Mail'
+import MenuBookIcon from '@mui/icons-material/MenuBook'
 import NotesIcon from '@mui/icons-material/Notes'
 import ShortTextIcon from '@mui/icons-material/ShortText'
 import SpellcheckIcon from '@mui/icons-material/Spellcheck'
@@ -28,11 +28,12 @@ interface props {
 }
 
 const menuItems = [
+    { text: '一括生成', link: '/AllGenerate' },
     { text: 'タイトル生成', link: '/TitleGeneration' },
-    { text: 'アウトライン', link: '/Outline' },
-    { text: 'リード文', link: '/LeadText' },
-    { text: '本文', link: '/BodyText' },
-    { text: 'まとめ', link: '/Conclusion' },
+    { text: 'アウトライン生成', link: '/Outline' },
+    { text: 'リード文生成', link: '/LeadText' },
+    { text: '本文生成', link: '/BodyText' },
+    { text: 'まとめ生成', link: '/Conclusion' },
     { text: 'リライト（短文）', link: '/RewriteShort' },
     { text: 'リライト（長文）', link: '/RewriteLong' },
     { text: '誤字脱字チェック', link: '/CheckMistakes' },
@@ -56,10 +57,13 @@ export const SideBar: React.FC<props> = (props) => {
                 <Divider />
                 <List>
                     {menuItems.map((item) => (
-                        <ListItem key={item.text} disablePadding sx={{ pl: 3 }}>
+                        <ListItem key={item.text} disablePadding sx={{ pl: 2 }}>
                             <Link href={item.link} passHref>
                                 <ListItemButton>
                                     <ListItemIcon>
+                                        {item.link === '/AllGenerate' && (
+                                            <MenuBookIcon />
+                                        )}
                                         {item.link === '/TitleGeneration' && (
                                             <TitleIcon />
                                         )}

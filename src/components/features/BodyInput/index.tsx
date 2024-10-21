@@ -12,7 +12,7 @@ export const Component = (props: Props) => {
     return (
         <TextField
             name="body"
-            placeholder="リライトしたい文章（Markdown記法）"
+            placeholder="本文（Markdown記法）"
             rows={10}
             value={body}
             onChange={(event) => setBody(event.target.value)}

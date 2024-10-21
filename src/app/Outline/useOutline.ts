@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import { reviewBlogPost } from '../../services/reviewService'
 import { prompt } from './prompts'
 
-export const useAll = () => {
+export const useOutline = () => {
+    const [title, setTitle] = useState('')
     const [keyWords, setKeyWords] = useState('')
     const [reviewComment, setReviewComment] = useState('')
     const [isReviewing, setIsReviewing] = useState(false)
@@ -22,7 +23,7 @@ export const useAll = () => {
         setReviewComment('')
         let comment = ''
         try {
-            comment = await reviewBlogPost('', keyWords, '', prompt)
+            comment = await reviewBlogPost(title, keyWords, '', prompt)
         } catch (e) {
             setReviewComment('')
             window.alert('error')
@@ -56,6 +57,8 @@ export const useAll = () => {
     }
 
     return {
+        title,
+        setTitle,
         keyWords,
         setKeyWords,
         reviewComment,

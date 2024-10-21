@@ -39,13 +39,14 @@ export default function Home() {
                     }}
                 >
                     タイトル生成、記事概要生成、記事のリライトを行うことができます！
-                    <br />- デザインを考える
-                    <br />- CSSを整える
+                    <br className="font-bold" />
+                    TODO：タスク一覧
+                    <br />- プロンプトを頑張る
+                    <br />- デザインを考え、CSSを整える
                     <br />- 事前学習を実装
+                    <br />- ローカルストレージに保存
                     <br />- デプロイ
-                    <br />- ドキュメント作成
                     <br />- ログイン・認証機能
-                    <br />
                 </Typography>
                 <Button
                     href="/TitleGeneration"

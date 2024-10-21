@@ -1,16 +1,16 @@
 'use client'
 
-import * as BodyInput from '@/components/features/BodyInput'
+import * as KeywordInput from '@/components/features/KeywordInput'
 import * as MarkdownOutput from '@/components/features/MarkdownOutput'
 import * as ReviewActions from '@/components/features/ReviewActions'
 import * as ReviewButton from '@/components/features/ReviewButton'
 import type React from 'react'
-import { useFreeInput } from './useFreeInput'
+import { useAllGenerate } from './useAllGenerate'
 
 const Page: React.FC = () => {
     const {
-        body,
-        setBody,
+        keyWords,
+        setKeyWords,
         reviewComment,
         isReviewing,
         hasReviewed,
@@ -18,17 +18,17 @@ const Page: React.FC = () => {
         onReview,
         copyToClipboard,
         clearReviewHistory
-    } = useFreeInput()
+    } = useAllGenerate()
 
     return (
         <main className="min-h-screen p-12">
-            <h1 className="text-center text-2xl mb-8 font-bold">自由入力</h1>
-            <p>
-                以下のフォームにブログの
-                タイトル、キーワード、本文を入力してください
-            </p>
+            <h1 className="text-center text-2xl mb-8 font-bold">一括生成</h1>
+            <p>以下のフォームにブログのキーワードを入力してください。</p>
 
-            <BodyInput.Component body={body} setBody={setBody} />
+            <KeywordInput.Component
+                keyWords={keyWords}
+                setKeyWords={setKeyWords}
+            />
 
             <ReviewButton.Component
                 isReviewing={isReviewing}
